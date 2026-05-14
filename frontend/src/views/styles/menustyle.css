@@ -1,0 +1,192 @@
+.fondo {
+  height: 100vh;
+  font-family: sans-serif;
+  display: flex;           /* Reemplaza align-items: center; que no funciona solo */
+  align-items: center;     /* Ahora sí funciona con display: flex */
+  justify-content: center; /* Opcional: centra horizontalmente si quieres */
+}
+
+.img-fondo1 {
+  background-image: url("/FondoInicio.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.img-fondo2 {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-fondo2::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("/FondoInicio.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transform: scaleX(-1);   /* ← Esto voltea la imagen horizontalmente */
+  z-index: -1;
+}
+
+
+.imgLogo {
+  width: 100%;
+  max-width: 60px;
+}
+
+.intro {
+  color: antiquewhite;
+  font-style: italic;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.titulo {
+  color: white;
+  font-size: 22px;
+}
+.subtitulo {
+  color: white;
+}
+form {
+  width: 400px; /* o el ancho que te guste */
+}
+input {
+  width: 68%;
+}
+.marco {
+  background-color: #cccccc13;
+  border-radius: 20px;
+}
+
+.simple {
+  background: none;         
+  border: none;                
+  color: white;             
+  margin-top: 15px;
+  text-decoration: underline;              
+  transition: all 0.2s ease;      /* Transición suave */
+}
+
+.simple:hover {
+  background-color: rgba(255, 255, 255, 0.15);  /* Blanco tenue */
+  border-radius: 6px;
+}
+
+.simple:active {
+  background-color: black;
+  border-radius: 6px;
+}
+
+
+
+
+.board-header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 5px 15px;
+  background: rgba(236, 236, 236, 0.068);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.board-footer {
+  display: flex;
+  margin-top: 8px;
+  justify-content: space-between;
+  padding: 7px 15px;
+  background: rgba(236, 236, 236, 0.068);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.username {
+  font-size: 22px;
+}
+.tiempo {
+  font-size: 1.3rem;         
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgb(0, 0, 0);
+}
+
+.game-board-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  justify-content: center;
+}
+
+.game-board-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-board-layout .evaluation-bar {
+  align-self: stretch;
+  height: auto;
+  margin-right: 0;
+}
+
+
+.board {
+  height: 40vh;           /* 90% de la altura de la pantalla */
+  aspect-ratio: 1 / 1;    /* Mantiene el tablero cuadrado */
+  max-width: 90vw;        /* Evita desbordar horizontalmente */
+  margin: auto;
+}
+
+
+.match-history-tittle{
+  font-family: sans-serif;
+  display: flex;      
+  justify-content: center;
+  width: 60%;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.import-btn {
+  width: 220px;
+  background-color: #ea8622a5;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .historyMenu {
+    margin-left: 70px;
+  }
+}
+
+@media (max-width: 767px) {
+  .row {
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+
+  .game-board-layout {
+    justify-content: center;
+    margin-top: 30px;
+  }
+  .match-history-tittle{
+    top: 100px;
+    position: absolute;
+    width: 100%;
+  }
+}
+
+
+
+
+

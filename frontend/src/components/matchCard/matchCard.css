@@ -1,0 +1,127 @@
+.match-card {
+  background: rgba(0, 0, 0, 0.048);
+  backdrop-filter: blur(6px);
+  border-radius: 25px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-left: 5px solid;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: all 0.18s ease;
+}
+
+.match-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+/* Colores de borde según resultado */
+.match-card.victory { border-left-color: #4ade80;}
+.match-card.defeat  { border-left-color: #f87171; }
+.match-card.draw    { border-left-color: #9ca3af; }
+
+/* Estructura principal */
+.match-card-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+
+.result-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  flex-shrink: 0;
+}
+
+/* Detalles expandibles */
+.move-details {
+  margin: 0px 0 5px;
+}
+
+.move-details summary {
+  cursor: pointer;
+  font-size: 0.92rem;
+  color: #a5b4fc;
+  padding: 6px 10px;
+  background: rgba(50, 50, 70, 0.4);
+  border-radius: 6px;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.move-details summary:hover {
+  background: rgba(70, 70, 90, 0.6);
+}
+
+.move-history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(20, 20, 30, 0.6);
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+/* Botones de acción */
+.match-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-action {
+  padding: 3px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-analyze {
+  font-weight: bold;
+  background: #68f163;
+  color: rgb(0, 0, 0);
+}
+
+.btn-analyze:hover {
+  background: #35af40;
+}
+
+.btn-export {
+  background: #6366f1;
+  color: white;
+}
+
+.btn-export:hover {
+  background: #4f46e5;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+

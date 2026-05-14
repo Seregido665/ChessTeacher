@@ -1,0 +1,113 @@
+import "../../styles/menustyle.css";
+import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { loginUser } from "../../../services/user.service";
+import AuthContext from "../../../context/authContext"
+import Button from '../../../components/bbuttons/button'
+
+
+const Sesion = () => {
+    const navigate = useNavigate();
+    const { handleSetUser } = useContext(AuthContext);
+    const [errors, setErrors] = useState({});
+    const [loginData, setLoginData] = useState({
+      email: '',
+      password: ''
+    })
+
+    const handleChange = (e) => {
+    const { name, value } = e.target
+        setLoginData(prev => ({
+        ...prev,
+        [name]: value
+        }))
+    }
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        const newErrors = {};
+        if (!loginData.email) { newErrors.email = { message: "Falta el email." }; }
+        if (!loginData.password) { newErrors.password = { message: "Falta la contraseña." }; }
+
+        const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,3}$/;
+        if (loginData.email && !emailRegex.test(loginData.email)) {
+            newErrors.email = { message: "Estructura incorrecta" };
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        loginUser(loginData)
+            .then((user) => {
+                setErrors({});
+                handleSetUser(user.data);
+                console.log("LOGUEADO");
+                navigate('/game');
+            })
+            .catch((err) => {
+                console.log(err);
+            }
+        );
+    };
+
+    return (
+        <div className="fondo img-fondo1">
+            <div>
+                <div className="row w-100 m-0">
+                    <div className="col-xl-5 col-md-5 col-12"></div>
+                    <div className="col-xl-7 col-md-7 col-12 d-flex align-items-center">
+                        <section className="inicioSesion">
+                            <div className="pb-3"> 
+                                <img className="imgLogo" src="../../img/logoChessW.png"/> 
+                            </div>
+                            <section className="marco">
+                                <h1 className="titulo pt-4 pb-2">Iniciar Sesión.</h1>
+                                <form onSubmit={handleLogin} className="formul">
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        value={loginData.email}
+                                        onChange={handleChange}
+                                        placeholder="Email"
+                                    />
+                                    {errors.email && (<div className="text-danger">{errors.email.message}</div>)}
+                                    <input
+                                        className="mt-2"
+                                        type="password"
+                                        name="password"
+                                        value={loginData.password}
+                                        onChange={handleChange}
+                                        placeholder="Password"
+                                    />
+                                    {errors.password && (<div className="text-danger">{errors.password.message}</div>)}
+                                    <div className="pt-4">
+                                        <Button
+                                            size="large"
+                                            type="submit"
+                                            text="INICIAR SESIÓN"
+                                            color="azul"
+                                            action={() => console.log('Botón presionado')}
+                                        />
+                                    </div>
+                                </form>
+                            </section>
+                            
+                            <div className="pt-2">
+                                <button 
+                                    className="simple" 
+                                    onClick={() => navigate("/game")}>
+                                    Probar.
+                                </button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Sesion;
