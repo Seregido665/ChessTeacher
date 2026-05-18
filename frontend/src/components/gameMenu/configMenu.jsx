@@ -71,6 +71,10 @@ export default function ConfigMenu({
       const winnerColor = gameResult.winner === "white" ? "Blancas" : "Negras";
       return `¡${winnerColor} GANAN por rendición!`;
     }
+    if (gameResult.reason === "time") {
+      const loserColor = selectedColor === "white" ? "Blancas" : "Negras";
+      return `¡${loserColor} PIERDEN por tiempo!`;
+    }
     return "Tablas";
   };
 
@@ -128,16 +132,17 @@ export default function ConfigMenu({
           value={localDifficulty}
           onChange={handleDifficultyChange}
         >
-          <option value={0}>0 - (200 - 500)</option>
-          <option value={1}>1 - (500 - 800)</option>
-          <option value={2}>2 - (800 - 1000)</option>
-          <option value={3}>3 - (1000 - 1200)</option>
-          <option value={4}>4 - (1200 - 1500)</option>
-          <option value={5}>5 - (1500 - 1800)</option>
-          <option value={6}>6 - (1800 - 2000)</option>
-          <option value={7}>7 - (2000 - 2200)</option>
-          <option value={8}>8 - (2200 - 2400)</option>
-          <option value={9}>9 - (2400+)</option>
+          <option value={0}>0 - (200 - 400)</option>
+          <option value={1}>1 - (400 - 600)</option>
+          <option value={2}>2 - (600 - 800)</option>
+          <option value={3}>3 - (800 - 1000)</option>
+          <option value={4}>4 - (1000 - 1200)</option>
+          <option value={5}>5 - (1200 - 1400)</option>
+          <option value={6}>6 - (1400 - 1600)</option>
+          <option value={7}>7 - (1600 - 1800)</option>
+          <option value={8}>8 - (1800 - 1950)</option>
+          <option value={9}>9 - (1950 - 2100)</option>
+          <option value={10}>10 - (2000 - 2200)</option>
         </select>
       </div>
 

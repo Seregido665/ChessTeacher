@@ -93,7 +93,7 @@ const ChessGame = ({
 
     // - SI HAY UNA PIEZA SELECCIONADA Y EL CLICK ES EN UN MOVIMIENTO LEGAL → HACER MOVIMIENTO -
     if (selectedSquare && legalMoves.includes(square)) {
-      const moveSuccess = makeMove({
+      makeMove({
         from: selectedSquare,
         to: square,
         promotion: 'q', 
@@ -179,6 +179,7 @@ const ChessGame = ({
 
   // --- TURNO DE LA IA ---
   useEffect(() => {
+    if (!gameStarted) return;
     if (isThinking || gameRef.current.isGameOver()) return;
 
     const turn = gameRef.current.turn();
@@ -189,16 +190,17 @@ const ChessGame = ({
       setIsThinking(true);
 
       const levels = {
-        0: { skill: 0, depth: 1 },
-        1: { skill: 1, depth: 1 },
-        2: { skill: 3, depth: 1 },
-        3: { skill: 5, depth: 2 },
-        4: { skill: 8, depth: 4 },
-        5: { skill: 12, depth: 6 },
-        6: { skill: 15, depth: 8 },
-        7: { skill: 18, depth: 10 },
-        8: { skill: 20, depth: 12 },
-        9: { skill: 20, depth: 15 }
+        0:  { skill: 0,  depth: 1 },
+        1:  { skill: 2,  depth: 1 },
+        2:  { skill: 4,  depth: 2 },
+        3:  { skill: 5,  depth: 3 },
+        4:  { skill: 7,  depth: 4 },
+        5:  { skill: 9,  depth: 5 },
+        6:  { skill: 11, depth: 6 },
+        7:  { skill: 13, depth: 7 },
+        8:  { skill: 14, depth: 8 },
+        9:  { skill: 16, depth: 9 },
+        10: { skill: 18, depth: 10 }
       };
 
       const config = levels[difficulty] || levels[3];

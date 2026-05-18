@@ -233,10 +233,7 @@ nav {
   }
 
   .logo {
-    width: 36px;
-    height: 36px;
-    padding: 6px;
-    margin-top: 0;
+    display: none;
   }
 
   .menuNav {
@@ -245,7 +242,6 @@ nav {
     max-width: none;
     gap: 4px;
     flex-wrap: nowrap;
-    padding-left: 20px;
   }
 
   nav {

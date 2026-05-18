@@ -8,13 +8,13 @@ export default function GameMatchMenu({
   selectedColor,
   onClue,
 }) {
-  const historyEndRef = useRef(null);
+  const historyContainerRef = useRef(null);
   const { isAuthenticated } = useContext(AuthContext);
 
   // --- SCROLL VERTICAL ---
   useEffect(() => {
-    if (historyEndRef.current) {
-      historyEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (historyContainerRef.current) {
+      historyContainerRef.current.scrollTop = historyContainerRef.current.scrollHeight;
     }
   }, [moveHistory]);
 
@@ -32,7 +32,7 @@ export default function GameMatchMenu({
     <>
       <h5 className="text-center mb-3">Historial de movimientos</h5>
 
-      <div className="move-history mb-4">
+      <div className="move-history mb-4" ref={historyContainerRef}>
         <div className="move-table">
           <div className="table-header">
             <div>#</div>
@@ -48,7 +48,6 @@ export default function GameMatchMenu({
             </div>
           ))}
 
-          <div ref={historyEndRef} />
         </div>
       </div>
 
