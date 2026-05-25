@@ -96,21 +96,27 @@ export default function ConfigMenu({
       {/* - SELECCIONAR COLOR - */}
       <div className="mb-3">
         <div className="color-selector d-flex justify-content-center gap-3">
-          <button
-            className={`colorButton white ${selectedColor === "white" ? "selected" : ""}`}
-            onClick={() => setSelectedColor("white")}
-            title="Blancas"
-          />
-          <button
-            className={`colorButton gradient ${selectedColor === "gradient" ? "selected" : ""}`}
-            onClick={() => setSelectedColor("gradient")}
-            title="Aleatorio"
-          />
-          <button
-            className={`colorButton black ${selectedColor === "black" ? "selected" : ""}`}
-            onClick={() => setSelectedColor("black")}
-            title="Negras"
-          />
+          <div className="d-flex flex-column align-items-center">
+            <button
+              className={`colorButton white ${selectedColor === "white" ? "selected" : ""}`}
+              onClick={() => setSelectedColor("white")}
+              title="Blancas"
+            />
+          </div>
+          <div className="d-flex flex-column align-items-center">
+            <button
+              className={`colorButton gradient ${selectedColor === "gradient" ? "selected" : ""}`}
+              onClick={() => setSelectedColor("gradient")}
+              title="Aleatorio"
+            />
+          </div>
+          <div className="d-flex flex-column align-items-center">
+            <button
+              className={`colorButton black ${selectedColor === "black" ? "selected" : ""}`}
+              onClick={() => setSelectedColor("black")}
+              title="Negras"
+            />
+          </div>
         </div>
       </div>
 

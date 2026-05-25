@@ -2,16 +2,21 @@
 .match-menu-container {
   color: rgb(238, 238, 238);
   width: min(77vw, 77vh);
-  background: #8383832f;
-  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.5);
-  padding: 1rem;
+  background: linear-gradient(160deg, rgba(255,255,255,0.07) 0%, rgba(0,0,0,0.38) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
   margin-right: 10px;
   overflow: hidden;
 }
 
 .subMenu {
-  padding: 5px 10px 10px 10px;
-  background-color: #0000005d;
+  padding: 8px 12px 10px 12px;
+  background-color: rgba(0,0,0,0.22);
+  border-radius: 8px;
+  border-left: 3px solid rgba(255,255,255,0.13);
   font-weight: bold;
 }
 
@@ -28,6 +33,11 @@
   border-radius: 80px;
   cursor: pointer;
   border: 2px solid transparent;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.colorButton:hover {
+  transform: scale(1.1);
 }
 
 .colorButton.white {
@@ -44,6 +54,7 @@
 .colorButton.selected {
   border-color: #07eeffce;
   transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(7, 238, 255, 0.5);
 }
 
 
@@ -54,24 +65,31 @@
 }
 
 .inicio {
-  background: #28a745;     
+  background: linear-gradient(135deg, #28a745, #1e8c38);
   color: white;
+  box-shadow: 0 3px 12px rgba(40, 167, 69, 0.35);
 }
 .inicio:hover {
-  background: #2fcf55;
+  background: linear-gradient(135deg, #34c65a, #28a745);
+  box-shadow: 0 5px 16px rgba(40, 167, 69, 0.5);
+  transform: translateY(-1px);
+}
+.inicio:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
 }
 
 .matchButton {
   width: 80%;
-  padding: 1rem;
   font-size: 1.1rem;
   font-weight: bold;
   border: none;
-  border-radius: 1px;
+  border-radius: 8px;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  padding: 8px 20px; /* opcional: altura y relleno del botón */
+  padding: 8px 20px;
   margin-bottom: 25px;
+  letter-spacing: 0.03em;
 }
 
 .saveButton {
@@ -262,8 +280,15 @@
 
 .result-text {
   margin-bottom: 0;
-  font-size: 500px;
-  
+  font-size: 1.3rem;
+}
+
+.color-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 
