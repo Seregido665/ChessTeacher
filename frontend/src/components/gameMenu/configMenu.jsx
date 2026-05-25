@@ -8,11 +8,13 @@ export default function ConfigMenu({
   setSelectedColor,
   showEvaluationBar,
   setShowEvaluationBar,
+  showBestMove,
+  setShowBestMove,
   setDifficulty,
   user,
   onSaveGame,
   onStartGame,
-  onTimeChange, 
+  onTimeChange,
   onResetGame,
 }) {
   const [localDifficulty, setLocalDifficulty] = useState(3);
@@ -123,6 +125,20 @@ export default function ConfigMenu({
           Mostrar barra de ventaja
         </label>
       </div>
+      {user && (
+        <div className="form-check text-start mb-2">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            checked={showBestMove}
+            onChange={(e) => setShowBestMove(e.target.checked)}
+            id="bestMoveCheckbox"
+          />
+          <label className="form-check-label" htmlFor="bestMoveCheckbox">
+            Mostrar "Mejor Jugada"
+          </label>
+        </div>
+      )}
 
       {/* - DIFICULTAD - */}
       <div className="subMenu mb-2">

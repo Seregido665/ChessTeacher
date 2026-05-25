@@ -10,6 +10,7 @@ const Historial = () => {
   const { user } = useContext(AuthContext);
   const [matches, setMatches] = useState([]);
   const [isImporting, setIsImporting] = useState(false);
+  const [importError, setImportError] = useState(null);
   const isLoggedIn = !!user;
   const fileInputRef = useRef(null);
 
@@ -31,11 +32,9 @@ const Historial = () => {
       await deleteMatch(matchId);
       setMatches((prevMatches) => prevMatches.filter(m => m.id !== matchId));
     } catch (err) {
-      console.error(err);
+      // silently ignore delete errors
     }
   };
-
-  const getUserId = () => user?._id || user?.user?._id;
 
   const handleImportClick = () => {
     fileInputRef.current?.click();
@@ -43,19 +42,24 @@ const Historial = () => {
 
   const handleImportPGN = async (event) => {
     const file = event.target.files?.[0];
-    const userId = getUserId();
+    if (!file) return;
+
+    setIsImporting(true);
+    setImportError(null);
 
     try {
-      const matchData = await buildMatchDataFromPgnFile(file, userId);
+      const matchData = await buildMatchDataFromPgnFile(file, user?._id);
       const response = await saveMatch(matchData);
       const importedMatch = response?.data?.match;
 
       if (importedMatch) {
         setMatches((prev) => [importedMatch, ...prev]);
       }
-      
     } catch (err) {
-      console.error(err);
+      setImportError("Error al importar la partida. Revisa que el archivo PGN sea válido.");
+    } finally {
+      setIsImporting(false);
+      event.target.value = '';
     }
   };
 
@@ -85,6 +89,10 @@ const Historial = () => {
             style={{ display: 'none' }}
             onChange={handleImportPGN}
           />
+
+          {importError && (
+            <div className="text-danger mb-3">{importError}</div>
+          )}
 
           {!isLoggedIn && (
             <div className="text-white text-center">

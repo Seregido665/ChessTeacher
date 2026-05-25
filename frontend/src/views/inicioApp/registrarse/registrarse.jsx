@@ -67,7 +67,7 @@ const Registrarse = () => {
                     <div className="col-xl-7 col-md-7 col-12 d-flex align-items-center">
                         <section className="inicioSesion">
                             <div className="pb-3"> 
-                                <img className="imgLogo" src="../../img/logoChessW.png"/> 
+                                <img className="imgLogo" src="/img/logoChessW.png" alt="Logo" />
                             </div>
                             <section className="marco">
                                 <h4 className="titulo pt-4 pb-3">Registro de Usuario</h4>
@@ -115,7 +115,7 @@ const Registrarse = () => {
                                             type="submit"
                                             text="REGISTRARSE"
                                             color="verde"
-                                            action={() => console.log('Botón presionado')}
+                                            action={() => {}}
                                         />
                                     </div>
                                 </form>

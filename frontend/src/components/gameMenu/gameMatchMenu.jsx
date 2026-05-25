@@ -7,6 +7,7 @@ export default function GameMatchMenu({
   onGameEnd,
   selectedColor,
   onClue,
+  showBestMove = true,
 }) {
   const historyContainerRef = useRef(null);
   const { isAuthenticated } = useContext(AuthContext);
@@ -51,7 +52,7 @@ export default function GameMatchMenu({
         </div>
       </div>
 
-      {isAuthenticated && (
+      {isAuthenticated && showBestMove && (
         <div className="text-center mt-2">
           <button className="matchButton pista" onClick={onClue}>
             MEJOR JUGADA

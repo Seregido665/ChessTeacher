@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AuthContext from "../../context/authContext";
 import ConfigMenu from './configMenu';
 import GameMatchMenu from './gameMatchMenu';
@@ -31,6 +31,7 @@ export default function MatchMenu({
   moveQualities = [],
 }) {
   const { user } = useContext(AuthContext);
+  const [showBestMove, setShowBestMove] = useState(true);
 
   const showResult = !!gameResult;
   const isGameActive = gameStarted && !showResult;
@@ -57,6 +58,7 @@ export default function MatchMenu({
           onGameEnd={onGameEnd}
           selectedColor={selectedColor}
           onClue={onClue}
+          showBestMove={showBestMove}
         />
       ) : (
         // Modo CONFIGURACIÓN 
@@ -68,11 +70,13 @@ export default function MatchMenu({
           setSelectedColor={setSelectedColor}
           showEvaluationBar={showEvaluationBar}
           setShowEvaluationBar={setShowEvaluationBar}
+          showBestMove={showBestMove}
+          setShowBestMove={setShowBestMove}
           setDifficulty={setDifficulty}
           user={user}
           onSaveGame={onSaveGame}
           onStartGame={onStartGame}
-          onTimeChange={onTimeChange} 
+          onTimeChange={onTimeChange}
           onResetGame={onResetGame}
         />
       )}

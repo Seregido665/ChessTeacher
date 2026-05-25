@@ -21,7 +21,7 @@ export default function AsideMenu() {
   return (
     <div className="menuLateral">
       <div className="logo-container">
-        <img className="logo" src="./../img/logoChessW.png" alt="Logo" />
+        <img className="logo" src="/img/logoChessW.png" alt="Logo" />
       </div>
 
       <nav className="menuNav">

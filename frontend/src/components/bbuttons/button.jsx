@@ -1,6 +1,6 @@
 import './button.css'
 
-const Button = ({ type, text, action ,color }) => {
+const Button = ({ type, text, action, color }) => {
   return (
     <button
       className={`btn-special ${type} ${color}`}
@@ -11,4 +11,4 @@ const Button = ({ type, text, action ,color }) => {
   )
 }
 
-export default Button  
+export default Button

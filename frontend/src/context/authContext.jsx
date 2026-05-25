@@ -7,12 +7,13 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setTokenState] = useState(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   // --- ESTABLECER USUARIO Y TOKEN AL LOGUEAR ---
   const handleSetUser = useCallback((authData) => {
     if (authData.token) {
-      setToken(authData.token);     
-      setTokenState(authData.token); 
+      setToken(authData.token);
+      setTokenState(authData.token);
     }
     if (authData.user) {
       const normalizedUser = authData.user.user ? authData.user.user : authData.user;
@@ -32,16 +33,23 @@ export const AuthContextProvider = ({ children }) => {
     const checkToken = async () => {
       const storedToken = getToken();
 
+      if (!storedToken) {
+        setIsAuthLoading(false);
+        return;
+      }
+
       setTokenState(storedToken);
       try {
-        const profileResponse = await getUserProfile(storedToken); 
-        const profileData = profileResponse.data; 
+        const profileResponse = await getUserProfile();
+        const profileData = profileResponse.data;
         const normalizedUser = profileData.user ? profileData.user : profileData;
-        
-        setUser(normalizedUser); // Ahora es { _id, name, email }
-      } catch (err) {
+        setUser(normalizedUser);
+      } catch (error) {
         handleLogout();
-      } 
+        console.error("Error al validar token:", error);
+      } finally {
+        setIsAuthLoading(false);
+      }
     };
 
     checkToken();
@@ -55,7 +63,8 @@ export const AuthContextProvider = ({ children }) => {
       token,
       handleSetUser,
       handleLogout,
-      isAuthenticated
+      isAuthenticated,
+      isAuthLoading
     }}>
       {children}
     </AuthContext.Provider>

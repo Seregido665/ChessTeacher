@@ -11,10 +11,6 @@ import AuthContext from "../../context/authContext";
 
 const Juego = () => {
   const { user, isAuthLoading } = useContext(AuthContext);
-  
-  useEffect(() => {
-    console.log("💡 Usuario actual:", user);
-  }, [user, isAuthLoading]);
 
   const [gameStarted, setGameStarted] = useState(false);
   const [resetKey, setResetKey] = useState(0);
@@ -33,10 +29,8 @@ const Juego = () => {
   const timerRef = useRef(null);
 
   const buildMatchData = () => {
-    const userId = user?._id || user?.user?._id;
-
     return {
-      user: userId,
+      user: user?._id,
       playerColor: selectedColor,
       winner: gameResult.winner,
       resultReason: gameResult.reason,
@@ -55,8 +49,7 @@ const Juego = () => {
 
     const matchData = buildMatchData();    
     saveMatch(matchData)
-      .then(() => console.log("✅ Partida guardada"))
-      .catch(err => console.error("❌ Error al guardar:", err.response?.data));
+      .catch(() => {});
   };
 
   // --- ELIGE TIEMPO, PERO NO LO INICIA ---
@@ -159,7 +152,7 @@ const Juego = () => {
       (selectedColor === "white" && lastMoveIndex % 2 === 0) ||
       (selectedColor === "black" && lastMoveIndex % 2 === 1);
 
-    if (playerMoved) {
+    if (!isInfiniteTime && playerMoved && increment > 0) {
       setTimeLeft(prev => prev + increment);
     }
   }, [moveHistory, gameStarted, selectedColor, increment]);

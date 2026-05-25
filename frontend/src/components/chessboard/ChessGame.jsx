@@ -4,6 +4,10 @@ import { Chess } from 'chess.js';
 import Result from "../resultado/result";
 import './chessboard.css';
 
+const BOARD_HEIGHT_RATIO = 0.8;
+const BOARD_WIDTH_RATIO  = 0.9;
+const LEGAL_MOVE_DOT_RATIO = 0.32;
+
 const ChessGame = ({
   gameStarted,
   selectedColor,
@@ -38,8 +42,8 @@ const ChessGame = ({
   // --- AJUSTA EL TAMAÑO DEL TABLERO ---
   useEffect(() => {
     const updateBoardSize = () => {
-      const heightBased = window.innerHeight * 0.8;
-      const widthBased = window.innerWidth * 0.9;
+      const heightBased = window.innerHeight * BOARD_HEIGHT_RATIO;
+      const widthBased = window.innerWidth * BOARD_WIDTH_RATIO;
       setBoardWidth(Math.min(heightBased, widthBased));
     };
 
@@ -315,7 +319,7 @@ const ChessGame = ({
       >
         {legalMoves.map(square => {
           const { x, y, size } = getSquarePosition(square);
-          const circleSize = size * 0.32;
+          const circleSize = size * LEGAL_MOVE_DOT_RATIO;
           return (
             <div
               key={square}

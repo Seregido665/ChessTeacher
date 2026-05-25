@@ -10,6 +10,7 @@ const Sesion = () => {
     const navigate = useNavigate();
     const { handleSetUser } = useContext(AuthContext);
     const [errors, setErrors] = useState({});
+    const [loginError, setLoginError] = useState(null);
     const [loginData, setLoginData] = useState({
       email: '',
       password: ''
@@ -40,17 +41,17 @@ const Sesion = () => {
             return;
         }
 
+        setLoginError(null);
         loginUser(loginData)
-            .then((user) => {
+            .then((response) => {
                 setErrors({});
-                handleSetUser(user.data);
-                console.log("LOGUEADO");
+                handleSetUser(response.data);
                 navigate('/game');
             })
             .catch((err) => {
-                console.log(err);
-            }
-        );
+                const msg = err.response?.data?.message || "Credenciales incorrectas";
+                setLoginError(msg);
+            });
     };
 
     return (
@@ -61,7 +62,7 @@ const Sesion = () => {
                     <div className="col-xl-7 col-md-7 col-12 d-flex align-items-center">
                         <section className="inicioSesion">
                             <div className="pb-3"> 
-                                <img className="imgLogo" src="../../img/logoChessW.png"/> 
+                                <img className="imgLogo" src="/img/logoChessW.png" alt="Logo" />
                             </div>
                             <section className="marco">
                                 <h1 className="titulo pt-4 pb-2">Iniciar Sesión.</h1>
@@ -83,13 +84,14 @@ const Sesion = () => {
                                         placeholder="Password"
                                     />
                                     {errors.password && (<div className="text-danger">{errors.password.message}</div>)}
+                                    {loginError && (<div className="text-danger mt-2">{loginError}</div>)}
                                     <div className="pt-4">
                                         <Button
                                             size="large"
                                             type="submit"
                                             text="INICIAR SESIÓN"
                                             color="azul"
-                                            action={() => console.log('Botón presionado')}
+                                            action={() => {}}
                                         />
                                     </div>
                                 </form>
