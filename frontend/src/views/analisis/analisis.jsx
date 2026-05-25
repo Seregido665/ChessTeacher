@@ -13,8 +13,13 @@ const Analisis = () => {
     const { match } = location.state || {};
     const [game, setGame] = useState(new Chess());
     const [currentMoveIndex, setCurrentMoveIndex] = useState(0);
-    const [boardOrientation, setBoardOrientation] = useState('white');
+    const [isFlipped, setIsFlipped] = useState(false);
     const [boardWidth, setBoardWidth] = useState(400);
+
+    const baseOrientation = match?.playerColor || 'white';
+    const displayOrientation = isFlipped
+        ? (baseOrientation === 'white' ? 'black' : 'white')
+        : baseOrientation;
     const { bestMoveArrow, boardEvaluation, moveQualities } = useStockAnalisis({ game, match });
     
     // --- RECONSTRUYE EL ESTADO DEL TABLERO SEGÚN EL MOVIMIENTO ACTUAL ---
@@ -32,7 +37,6 @@ const Analisis = () => {
         });
 
         setGame(newGame);
-        setBoardOrientation(match?.playerColor || 'white');
 
         if (boundedIndex !== currentMoveIndex) {
             setCurrentMoveIndex(boundedIndex);
@@ -43,6 +47,7 @@ const Analisis = () => {
     useEffect(() => {
         const historyLength = match?.moveHistory?.length || 0;
         setCurrentMoveIndex(historyLength);
+        setIsFlipped(false);
     }, [match]);
 
     // --- AJUSTA EL TAMAÑO DEL TABLERO AL TAMAÑO DE LA VENTANA ---
@@ -70,7 +75,7 @@ const Analisis = () => {
                 <div className="game-board-layout">
                     <EvaluationBar
                         evaluation={boardEvaluation}
-                        playerColor={match?.playerColor || 'white'}
+                        playerColor={displayOrientation}
                     />
                     <div className="">
                         <div className="board-header">
@@ -78,9 +83,9 @@ const Analisis = () => {
                         </div>
                         
                         {/* TABLERO DE AJEDREZ */}
-                        <Chessboard 
+                        <Chessboard
                             position={game.fen()}
-                            boardOrientation={boardOrientation}
+                            boardOrientation={displayOrientation}
                             arePixelsAnimated={true}
                             boardWidth={boardWidth}
                             customArrows={bestMoveArrow}
@@ -101,7 +106,7 @@ const Analisis = () => {
             </div>
 
             <div className="col-xl-4 col-md-4 col-12 d-flex align-items-center justify-content-center">
-                <MatchMenu 
+                <MatchMenu
                     isAnalysisMode={true}
                     match={match}
                     moveHistory={match?.moveHistory || []}
@@ -112,6 +117,7 @@ const Analisis = () => {
                     onGoEnd={() => setCurrentMoveIndex(match?.moveHistory?.length || 0)}
                     onSelectMove={(moveIndex) => setCurrentMoveIndex(moveIndex)}
                     moveQualities={moveQualities}
+                    onFlipBoard={() => setIsFlipped(prev => !prev)}
                 />
             </div>
         </div>

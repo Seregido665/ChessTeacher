@@ -16,6 +16,8 @@ export default function MatchMenu({
   showEvaluationBar,
   setShowEvaluationBar,
   setDifficulty,
+  playStyle,
+  setPlayStyle,
   gameResult,
   onSaveGame,
   onGameEnd,
@@ -29,6 +31,7 @@ export default function MatchMenu({
   onGoEnd,
   onSelectMove,
   moveQualities = [],
+  onFlipBoard,
 }) {
   const { user } = useContext(AuthContext);
   const [showBestMove, setShowBestMove] = useState(true);
@@ -50,6 +53,7 @@ export default function MatchMenu({
           onNextMove={onNextMove}
           onGoEnd={onGoEnd}
           onSelectMove={onSelectMove}
+          onFlipBoard={onFlipBoard}
         />
       ) : isGameActive ? (
         // Modo PARTIDA EN CURSO
@@ -73,6 +77,8 @@ export default function MatchMenu({
           showBestMove={showBestMove}
           setShowBestMove={setShowBestMove}
           setDifficulty={setDifficulty}
+          playStyle={playStyle}
+          setPlayStyle={setPlayStyle}
           user={user}
           onSaveGame={onSaveGame}
           onStartGame={onStartGame}

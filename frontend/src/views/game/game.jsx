@@ -16,6 +16,7 @@ const Juego = () => {
   const [resetKey, setResetKey] = useState(0);
   const [selectedColor, setSelectedColor] = useState("white");
   const [difficulty, setDifficulty] = useState(3);
+  const [playStyle, setPlayStyle] = useState('balanced');
   const [moveHistory, setMoveHistory] = useState([]);
   const [boardEvaluation, setBoardEvaluation] = useState(0);
   const [showEvaluationBar, setShowEvaluationBar] = useState(true);
@@ -185,7 +186,7 @@ const Juego = () => {
               </div>
               
               {/* TABLERO DE AJEDREZ */}
-              <ChessGame 
+              <ChessGame
                 className="game-chessboard"
                 gameStarted={gameStarted}
                 selectedColor={selectedColor}
@@ -193,6 +194,7 @@ const Juego = () => {
                 onMoveHistory={setMoveHistory}
                 onEvaluation={setBoardEvaluation}
                 difficulty={difficulty}
+                playStyle={playStyle}
                 onGameEnd={handleGameEnd}
                 onSaveGame={handleSaveGame}
                 onFenChange={(fen) => { setCurrentFen(fen); clearClue(); }}
@@ -216,10 +218,12 @@ const Juego = () => {
             gameStarted={gameStarted}
             onStartGame={handleStart}
             onTimeChange={handleTimeChange}
-            onResetGame={handleReset}       
+            onResetGame={handleReset}
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
-            setDifficulty={setDifficulty} 
+            setDifficulty={setDifficulty}
+            playStyle={playStyle}
+            setPlayStyle={setPlayStyle}
             moveHistory={moveHistory}
             showEvaluationBar={showEvaluationBar}
             setShowEvaluationBar={setShowEvaluationBar}

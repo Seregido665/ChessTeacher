@@ -10,6 +10,7 @@ export default function AnalyzeMenu({
   onNextMove,
   onGoEnd,
   onSelectMove,
+  onFlipBoard,
 }) {
   const currentMovePosition = currentMoveIndex - 1;
 
@@ -99,6 +100,17 @@ export default function AnalyzeMenu({
             </div>
           ))}
         </div>
+      </div>
+
+      {/* - VOLTEAR TABLERO - */}
+      <div className="text-center mb-3">
+        <button
+          type="button"
+          className="matchButton pista"
+          onClick={onFlipBoard}
+        >
+          Voltear tablero
+        </button>
       </div>
 
       {/* - TECLAS DE NAVEGACION - */}

@@ -8,6 +8,13 @@ const BOARD_HEIGHT_RATIO = 0.8;
 const BOARD_WIDTH_RATIO  = 0.9;
 const LEGAL_MOVE_DOT_RATIO = 0.32;
 
+const STYLE_CONTEMPT = { balanced: 0, offensive: 100, defensive: -100 };
+
+const THINK_DELAY_MS = {
+  0: 300, 1: 400, 2: 500, 3: 700,  4: 900,
+  5: 1100, 6: 1300, 7: 1500, 8: 1700, 9: 2000, 10: 2500
+};
+
 const ChessGame = ({
   gameStarted,
   selectedColor,
@@ -15,6 +22,7 @@ const ChessGame = ({
   onMoveHistory,
   onEvaluation,
   difficulty,
+  playStyle = 'balanced',
   onGameEnd,
   onFenChange,
   clueArrow = [],
@@ -29,13 +37,19 @@ const ChessGame = ({
   const stockfish = useRef(null);
   const gameOverRef = useRef(false);
   const gameRef = useRef(game);
+  const thinkDelayRef = useRef(THINK_DELAY_MS[3]);
 
   useEffect(() => {
     gameRef.current = game;
   }, [game]);
 
+  useEffect(() => {
+    thinkDelayRef.current = THINK_DELAY_MS[difficulty] ?? 700;
+  }, [difficulty]);
+
   // --- ORIENTACION DEL TABLERO ---
   useEffect(() => {
+    if (selectedColor === 'gradient') return;
     setBoardOrientation(selectedColor === 'black' ? 'black' : 'white');
   }, [selectedColor]);
 
@@ -135,8 +149,10 @@ const ChessGame = ({
       if (line.includes('bestmove')) {
         const moveStr = line.split(' ')[1];
         if (moveStr && moveStr !== '(none)') {
-          makeMove(moveStr);
-          setIsThinking(false);
+          setTimeout(() => {
+            makeMove(moveStr);
+            setIsThinking(false);
+          }, thinkDelayRef.current);
         }
       }
 
@@ -208,7 +224,9 @@ const ChessGame = ({
       };
 
       const config = levels[difficulty] || levels[3];
-      
+      const contempt = STYLE_CONTEMPT[playStyle] ?? 0;
+
+      stockfish.current.postMessage(`setoption name Contempt value ${contempt}`);
       stockfish.current.postMessage(`setoption name Skill Level value ${config.skill}`);
       stockfish.current.postMessage(`position fen ${gameRef.current.fen()}`);
       stockfish.current.postMessage(`go depth ${config.depth}`);
