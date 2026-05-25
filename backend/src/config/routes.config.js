@@ -14,7 +14,7 @@ const { authenticateToken } = require("../middlewares/auth.middleware");
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.get("/profile", authenticateToken, authController.getProfile);
-router.post("/refresh-token", authenticateToken, authenticateToken, authController.refreshToken);
+router.post("/refresh-token", authenticateToken, authController.refreshToken);
         
 // USERS 
 // ------------------------------------------------------------------

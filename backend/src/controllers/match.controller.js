@@ -3,7 +3,6 @@ const MatchModel = require("../models/Match.model");
 module.exports.saveMatch = async (req, res) => {
   try {
     const {
-      user,
       playerColor,
       winner,
       resultReason,
@@ -14,7 +13,7 @@ module.exports.saveMatch = async (req, res) => {
     } = req.body || {};
 
     const match = await MatchModel.create({
-      user,
+      user: req.user._id,
       playerColor,
       winner,
       resultReason,
@@ -49,15 +48,22 @@ module.exports.getMatches = async (req, res) => {
   }
 };
 
-// -- BORRAR UN USUARIO :React ---
-module.exports.deleteMatch = (req, res, next) => {
-  const id = req.params.id;       // PUEDE QUE SEA _id ¿?¿?¿?¿?¿?¿?¿?¿?
+module.exports.deleteMatch = async (req, res) => {
+  try {
+    const id = req.params.id;
 
-  MatchModel.findByIdAndDelete(id)
-    .then(() => {
-      res.json("Match deleted successfully");
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+    const match = await MatchModel.findById(id);
+    if (!match) {
+      return res.status(404).json({ message: "Partida no encontrada" });
+    }
+
+    if (match.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: "No autorizado" });
+    }
+
+    await MatchModel.findByIdAndDelete(id);
+    res.json({ message: "Partida eliminada correctamente" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };

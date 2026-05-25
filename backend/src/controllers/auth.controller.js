@@ -126,6 +126,7 @@ const refreshToken = async (req, res) => {
       userId: user._id,
       email: user.email,
       name: user.name,
+      role: user.role,
     });
 
     res.json({

@@ -1,7 +1,3 @@
-const dns = require("node:dns");
-
-dns.setServers(["1.1.1.1", "1.0.0.1", "8.8.8.8", "8.8.4.4"]);
-
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -10,11 +6,15 @@ const { connectToMongo } = require("./config/mongo.config");
 const router = require("./config/routes.config");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: process.env.ALLOWED_ORIGIN || "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 app.use(express.json());
 app.use("/", router);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 async function bootstrap() {
       try {

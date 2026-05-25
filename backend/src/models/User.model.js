@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema({
     required: [true, "La contraseña es requerida!"],
     minLength: [8, "Al menos 8 caracteres!"],
   },
+  role: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
+  },
 }, {
   // MONGO GENERA UN ID PERO ASI: _id
   // Para cambiarlo:
