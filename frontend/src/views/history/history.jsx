@@ -32,7 +32,7 @@ const Historial = () => {
       await deleteMatch(matchId);
       setMatches((prevMatches) => prevMatches.filter(m => m.id !== matchId));
     } catch (err) {
-      // silently ignore delete errors
+      console.error(err);
     }
   };
 
@@ -56,7 +56,7 @@ const Historial = () => {
         setMatches((prev) => [importedMatch, ...prev]);
       }
     } catch (err) {
-      setImportError("Error al importar la partida. Revisa que el archivo PGN sea válido.");
+      setImportError(err);
     } finally {
       setIsImporting(false);
       event.target.value = '';
@@ -73,30 +73,43 @@ const Historial = () => {
             </div>
 
         <div className="historyMenu col-xl-10 col-md-9 col-12 d-flex flex-column align-items-center justify-content-start py-4">
-          <h2 className="text-white mb-4 match-history-tittle">Historial de Partidas</h2>
-          <button
-            type="button"
-            className="import-btn mb-4"
-            onClick={handleImportClick}
-            disabled={!isLoggedIn || isImporting}
-          >
-            {isImporting ? 'Importando...' : 'Importar partida'}
-          </button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".pgn"
-            style={{ display: 'none' }}
-            onChange={handleImportPGN}
-          />
+          <h2 className="text-white mb-4 match-history-tittle">Historial</h2>
+          {isLoggedIn && (
+            <>
+              <button
+                type="button"
+                className="import-btn mb-4"
+                onClick={handleImportClick}
+                disabled={isImporting}
+              >
+                {isImporting ? 'Importando...' : 'Importar partida'}
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pgn"
+                style={{ display: 'none' }}
+                onChange={handleImportPGN}
+              />
+            </>
+          )}
 
           {importError && (
             <div className="text-danger mb-3">{importError}</div>
           )}
 
           {!isLoggedIn && (
-            <div className="text-white text-center">
-              <p>Debes estar logueado</p>
+            <div className="text-center mt-5" style={{
+              background: 'rgba(0,0,0,0.45)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              borderRadius: '8px',
+              padding: '2rem 3rem',
+              backdropFilter: 'blur(8px)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+            }}>
+              <p style={{ fontSize: '1rem', color: 'rgb(255, 255, 255)', margin: 0 }}>
+                Debes iniciar sesión para tener historial de partidas.
+              </p>
             </div>
           )}
 

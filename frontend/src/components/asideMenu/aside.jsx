@@ -37,12 +37,12 @@ export default function AsideMenu() {
           text="HISTORIAL"
           action={() => navigate("/history")}
         />
-        <ButtonLeft
+        {/* <ButtonLeft
           img="/menuIcons/PuzzleW.png"
           type="butStyle"
           text="EJERCICIOS"
           action={() => navigate("/exercises")}
-        />
+        /> */}
         <ButtonLeft
           img="/menuIcons/RulesW.png"
           type="butStyle2"

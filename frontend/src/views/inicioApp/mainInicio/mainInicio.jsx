@@ -18,8 +18,7 @@ const Inicio = () => {
                   </div>
                   <div className="pb-3 pt-3">
                     <p className="intro">
-                      Bienvenido a tu entrenador <br />
-                      de ajedrez.
+                      Analiza tus partidas sin límites.
                     </p>
                   </div>
                   <div>
