@@ -170,7 +170,7 @@ input {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
   .row {
     overflow-y: auto;
     max-height: 100vh;

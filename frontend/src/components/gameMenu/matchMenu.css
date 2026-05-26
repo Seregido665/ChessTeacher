@@ -303,10 +303,10 @@
 
 
 
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
   .match-menu-container {
     color: rgb(238, 238, 238);
-    width: 90%;
+    width: 400px;
     margin-block: 30px;
   }
 }

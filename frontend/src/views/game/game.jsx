@@ -166,12 +166,12 @@ const Juego = () => {
   return (
     <div className="vh-100 img-fondo2">
       <div className="row w-100 h-100 m-0">
-        <div className="col-xl-1 col-md-1 col-12 px-0 d-flex">
+        <div className="col-xl-1 col-xl-1 col-12 px-0 d-flex">
           <aside className="menuLateral">
             <AsideMenu />
           </aside>
         </div>
-        <div className="col-xl-7 col-md-7 col-12 d-flex align-items-center justify-content-center">
+        <div className="col-xl-7 col-xl-7 col-12 d-flex align-items-center justify-content-center">
           <div className="game-board-layout">
             {showEvaluationBar && (
               <EvaluationBar
@@ -213,7 +213,7 @@ const Juego = () => {
           </div>
         </div>
 
-        <div className="matchMenu col-xl-4 col-md-4 col-12 d-flex align-items-center justify-content-center">
+        <div className="matchMenu col-xl-4 col-xl-4 col-12 d-flex align-items-center justify-content-center">
           <MatchMenu
             gameStarted={gameStarted}
             onStartGame={handleStart}

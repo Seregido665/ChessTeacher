@@ -21,7 +21,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
   .chessgame-wrapper {
     width: min(var(--board-size), 95vw);
     height: min(var(--board-size), 95vw);

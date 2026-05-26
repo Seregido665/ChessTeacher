@@ -66,13 +66,13 @@ const Historial = () => {
   return (
     <div className="vh-100 img-fondo2">
           <div className="row w-100 h-100 m-0">
-            <div className="col-xl-2 col-md-1 col-12 px-0 d-flex">
+            <div className="col-xl-2 col-xl-1 col-12 px-0 d-flex">
               <aside className="menuLateral">
                 <AsideMenu />
               </aside>
             </div>
 
-        <div className="historyMenu col-xl-10 col-md-9 col-12 d-flex flex-column align-items-center justify-content-start py-4">
+        <div className="historyMenu col-xl-10 col-xl-9 col-12 d-flex flex-column align-items-center justify-content-start py-4">
           <h2 className="text-white mb-4 match-history-tittle">Historial</h2>
           {isLoggedIn && (
             <>
