@@ -30,12 +30,14 @@ export default function AsideMenu() {
             img="/menuIcons/PlayW.png"
             type="butStyle"
             text="JUGAR"
+            tooltip="Jugar"
             action={() => navigate("/game")}
           />
           <ButtonLeft
             img="/menuIcons/HistorialW.png"
             type="butStyle"
             text="HISTORIAL"
+            tooltip="Historial"
             action={() => navigate("/history")}
           />
           {/* <ButtonLeft
@@ -48,6 +50,7 @@ export default function AsideMenu() {
             img="/menuIcons/RulesW.png"
             type="butStyle3"
             text="INFO.APP"
+            tooltip="Info. App"
             action={() => navigate("/rules")}
           />
         </nav>
@@ -59,23 +62,28 @@ export default function AsideMenu() {
         <div className="bottons-button">
           {!isLoggedIn && (
             <>
-              <Button
-                type="enPlay"
-                text={<><span className="auth-label-full">REGISTRARSE</span><span className="auth-label-short">R</span></>}
-                color="verde"
-                action={() => navigate("/registrarse")}
-              />
-              <Button
-                type="enPlay"
-                text={<><span className="auth-label-full">INICIAR SESIÓN</span><span className="auth-label-short">I</span></>}
-                color="azul"
-                action={() => navigate("/inicioSesion")}
-              />
+              <div className="aside-tooltip-wrapper" data-tooltip="Registrarse">
+                <Button
+                  type="enPlay"
+                  text={<><span className="auth-label-full">REGISTRARSE</span><span className="auth-label-short">R</span></>}
+                  color="verde"
+                  action={() => navigate("/registrarse")}
+                />
+              </div>
+              <div className="aside-tooltip-wrapper" data-tooltip="Iniciar Sesión">
+                <Button
+                  type="enPlay"
+                  text={<><span className="auth-label-full">INICIAR SESIÓN</span><span className="auth-label-short">I</span></>}
+                  color="azul"
+                  action={() => navigate("/inicioSesion")}
+                />
+              </div>
             </>
           )}
         </div>
         <ButtonLeftExit
           typeExit="exit"
+          tooltip="Salir"
           text={<><span className="exit-label">Salir</span><img className="exit-icon" src="/Off.png" alt="Salir" /></>}
           action={isLoggedIn ? onLogout : () => navigate("/mainInicio")}
         />

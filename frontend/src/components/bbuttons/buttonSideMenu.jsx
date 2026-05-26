@@ -1,6 +1,6 @@
-export const ButtonLeft = ({ text, action, img, type, typeExit }) => {
+export const ButtonLeft = ({ text, action, img, type, typeExit, tooltip }) => {
   return (
-    <div>
+    <div className="aside-tooltip-wrapper" data-tooltip={tooltip}>
       <button
         className={`menu-btn ${typeExit} ${type}`}
         onClick={() => action()}
@@ -12,9 +12,9 @@ export const ButtonLeft = ({ text, action, img, type, typeExit }) => {
   );
 };
 
-export const ButtonLeftExit = ({ text, action, type, typeExit }) => {
+export const ButtonLeftExit = ({ text, action, type, typeExit, tooltip }) => {
   return (
-    <div>
+    <div className="aside-tooltip-wrapper" data-tooltip={tooltip}>
       <button
         className={`menu-btn ${typeExit} ${type}`}
         onClick={() => action()}

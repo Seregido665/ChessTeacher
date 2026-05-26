@@ -11,7 +11,7 @@
   align-items: center;
   left: 0;
   top: 0;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 6px 0 20px rgba(0, 0, 0, 0.5);
   padding: 10px;
 }
@@ -75,8 +75,8 @@ nav {
 
 .exit {
   width: 80%;
-  height: 35px;
-  margin: 14px auto 20px;
+  height: 45px;
+  margin: 14px auto 12px;
   background: #00000065;
   box-shadow: 0px 0 10px rgba(255, 255, 255, 0.164);
   color: white;
@@ -171,6 +171,43 @@ nav {
 .auth-label-short {
   display: inline;
   line-height: 1;
+}
+
+/* tooltip */
+.aside-tooltip-wrapper {
+  position: relative;
+}
+
+.aside-tooltip-wrapper[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(20, 20, 20, 0.92);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+  z-index: 999;
+}
+
+.aside-tooltip-wrapper[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .aside-tooltip-wrapper[data-tooltip]::after {
+    left: 50%;
+    top: calc(100% + 6px);
+    transform: translateX(-50%);
+  }
 }
 
 /* grupos transparentes en desktop/tablet */
@@ -303,7 +340,6 @@ nav {
   }
 
   .exit {
-    margin-top: 26px;
     height: 30px;
     margin-inline: 15px;
   }
