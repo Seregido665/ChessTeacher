@@ -20,64 +20,66 @@ export default function AsideMenu() {
 
   return (
     <div className="menuLateral">
-      <div className="logo-container">
-        <img className="logo" src="/img/logoChessW.png" alt="Logo" />
-      </div>
+      <div className="aside-group-left">
+        <div className="logo-container">
+          <img className="logo" src="/img/logoChessW.png" alt="Logo" />
+        </div>
 
-      <nav className="menuNav">
-        <ButtonLeft
-          img="/menuIcons/PlayW.png"
-          type="butStyle"
-          text="JUGAR"
-          action={() => navigate("/game")}
-        />
-        <ButtonLeft
-          img="/menuIcons/HistorialW.png"
-          type="butStyle"
-          text="HISTORIAL"
-          action={() => navigate("/history")}
-        />
-        {/* <ButtonLeft
-          img="/menuIcons/PuzzleW.png"
-          type="butStyle"
-          text="EJERCICIOS"
-          action={() => navigate("/exercises")}
-        /> */}
-        <ButtonLeft
-          img="/menuIcons/RulesW.png"
-          type="butStyle2"
-          text="INFO.APP"
-          action={() => navigate("/rules")}
-        />
-      </nav>
+        <nav className="menuNav">
+          <ButtonLeft
+            img="/menuIcons/PlayW.png"
+            type="butStyle"
+            text="JUGAR"
+            action={() => navigate("/game")}
+          />
+          <ButtonLeft
+            img="/menuIcons/HistorialW.png"
+            type="butStyle"
+            text="HISTORIAL"
+            action={() => navigate("/history")}
+          />
+          {/* <ButtonLeft
+            img="/menuIcons/PuzzleW.png"
+            type="butStyle"
+            text="EJERCICIOS"
+            action={() => navigate("/exercises")}
+          /> */}
+          <ButtonLeft
+            img="/menuIcons/RulesW.png"
+            type="butStyle3"
+            text="INFO.APP"
+            action={() => navigate("/rules")}
+          />
+        </nav>
+      </div>
 
       <div className="spacer"></div>
 
-      <div className="bottons-button">
-        {!isLoggedIn && (
-          <>
-            <Button
-              type="enPlay"
-              text={<><span className="auth-label-full">REGISTRARSE</span><span className="auth-label-short">R</span></>}
-              color="verde"
-              action={() => navigate("/registrarse")}
-            />
-            <Button
-              type="enPlay"
-              text={<><span className="auth-label-full">INICIAR SESIÓN</span><span className="auth-label-short">I</span></>}
-              color="azul"
-              action={() => navigate("/inicioSesion")}
-            />
-          </>
-        )}
-
-        
-      </div>
-      <ButtonLeftExit
+      <div className="aside-group-right">
+        <div className="bottons-button">
+          {!isLoggedIn && (
+            <>
+              <Button
+                type="enPlay"
+                text={<><span className="auth-label-full">REGISTRARSE</span><span className="auth-label-short">R</span></>}
+                color="verde"
+                action={() => navigate("/registrarse")}
+              />
+              <Button
+                type="enPlay"
+                text={<><span className="auth-label-full">INICIAR SESIÓN</span><span className="auth-label-short">I</span></>}
+                color="azul"
+                action={() => navigate("/inicioSesion")}
+              />
+            </>
+          )}
+        </div>
+        <ButtonLeftExit
           typeExit="exit"
           text={<><span className="exit-label">Salir</span><img className="exit-icon" src="/Off.png" alt="Salir" /></>}
           action={isLoggedIn ? onLogout : () => navigate("/mainInicio")}
         />
+      </div>
     </div>
   );
 }

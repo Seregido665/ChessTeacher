@@ -166,12 +166,12 @@ const Juego = () => {
   return (
     <div className="vh-100 img-fondo2">
       <div className="row w-100 h-100 m-0">
-        <div className="col-xl-2 col-md-1 col-12 px-0 d-flex">
+        <div className="col-xl-1 col-md-1 col-12 px-0 d-flex">
           <aside className="menuLateral">
             <AsideMenu />
           </aside>
         </div>
-        <div className="col-xl-6 col-md-7 col-12 d-flex align-items-center justify-content-center">
+        <div className="col-xl-7 col-md-7 col-12 d-flex align-items-center justify-content-center">
           <div className="game-board-layout">
             {showEvaluationBar && (
               <EvaluationBar

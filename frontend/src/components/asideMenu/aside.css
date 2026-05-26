@@ -1,10 +1,11 @@
 .imgBut {
   max-width: 30px;
 }
+
 .menuLateral {
-  width: 280px;                    /* Ancho cómodo */
+  width: 80px;
   height: 100vh;
-  background: #83838310;            /* Fondo negro/gris muy oscuro uniforme */
+  background: #83838310;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,14 +18,14 @@
 
 .logo-container {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
-  padding: 12px;
-  margin-top: 20px;
+  width: 46px;
+  height: 46px;
+  padding: 8px;
+  margin-top: 14px;
   background: rgb(20, 20, 20);
   border-radius: 50%;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -33,16 +34,16 @@
 .menu-btn {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   width: 100%;
-  padding: 10px 20px;
+  padding: 8px 10px;
   margin-top: 5px;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -54,7 +55,12 @@
 }
 
 .menuNav {
-  max-width: 90%;
+  width: fit-content;
+  padding-top: 10px;
+}
+
+.menuNav .text-but {
+  display: none;
 }
 
 nav {
@@ -64,20 +70,20 @@ nav {
 }
 
 .spacer {
-  flex-grow: 1;    
+  flex-grow: 1;
 }
 
 .exit {
-  width: 60%; 
-  height: 35px;         
-  margin: 20px 40px 25px;      
-  background: #00000065;  
+  width: 80%;
+  height: 35px;
+  margin: 14px auto 20px;
+  background: #00000065;
   box-shadow: 0px 0 10px rgba(255, 255, 255, 0.164);
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-style: bold;
   letter-spacing: 2.5px;
-  border-radius: 3px;         
+  border-radius: 3px;
   transition: all 0.3s ease;
 }
 
@@ -91,125 +97,86 @@ nav {
   transform: translateY(-2px);
 }
 
+.exit .exit-label {
+  display: none;
+}
 
+.exit .exit-icon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+}
 
 .butStyle {
   background-color: #0000004f;
   color: white;
   margin-bottom: 5px;
-  max-width: 80%;
-  margin: 0 auto; 
+  max-width: 95%;
+  margin: 0 auto;
   margin-bottom: 5px;
-  height: 45px;
+  height: 40px;
 }
+
 .butStyle2 {
   background-color: #000000c6;
   color: white;
   margin-bottom: 5px;
   max-width: 80%;
-  margin: 0 auto; 
+  margin: 0 auto;
   margin-top: 25px;
   height: 45px;
 }
 
- .text-but {
-    margin: 0 auto;
-    justify-content: center; /* centra verticalmente */
-    align-items: center;  
- }
+.butStyle3 {
+  background-color: #000000c6;
+  color: white;
+  margin-top: 25px;
+  height: 45px;
+  max-width: 95%;
+}
 
- .info-button {
-    background-color: #0000004f;
-    color: white;
-    margin-bottom: 5px;
-    max-width: 80%;
-    margin: 0 auto; 
-    margin-bottom: 5px;
-    height: 45px;
- }
+.text-but {
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
 
-.auth-label-short,
-.exit-icon {
+.info-button {
+  background-color: #0000004f;
+  color: white;
+  margin-bottom: 5px;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  height: 45px;
+}
+
+.bottons-button .btn-special.enPlay {
+  width: 35px;
+  height: 35px;
+  margin: 8px auto;
+  padding: 0;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+.bottons-button .auth-label-full {
   display: none;
 }
 
- /* ── Tablet (768px – 1199px) ─────────────────────────────────────────────── */
-@media (min-width: 768px) and (max-width: 1199px) {
-  .menuLateral {
-    width: 100%;
-    min-width: 0;
-    
-  }
+.auth-label-short {
+  display: inline;
+  line-height: 1;
+}
 
-  .menuNav {
-    width: fit-content;
-    padding-top: 10px;
-  }
-
-  .logo {
-    width: 46px;
-    height: 46px;
-    padding: 8px;
-    margin-top: 14px;
-  }
-
-  .logo-container {
-    margin-bottom: 12px;
-  }
-
-  .menu-btn {
-    font-size: 13px;
-    letter-spacing: 1px;
-    padding: 8px 10px;
-    gap: 10px;
-  }
-
-  .butStyle {
-    max-width: 95%;
-    height: 40px;
-  }
-
-  .menuNav .text-but {
-    display: none;
-  }
-
-  .bottons-button .btn-special.enPlay {
-    width: 35px;
-    height: 35px;
-    margin: 8px auto;
-    padding: 0;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    letter-spacing: 0;
-  }
-
-  .bottons-button .auth-label-full {
-    display: none;
-  }
-
-  .bottons-button .auth-label-short {
-    display: inline;
-    line-height: 1;
-  }
-
-  .exit .exit-label {
-    display: none;
-  }
-
-  .exit .exit-icon {
-    display: block;
-    width: 22px;
-    height: 22px;
-    margin-right: 8px;
-  }
-
-  .exit {
-    width: 80%;
-    margin: 14px auto 20px;
-    font-size: 14px;
-  }
+/* grupos transparentes en desktop/tablet */
+.aside-group-left,
+.aside-group-right {
+  display: contents;
 }
 
 /* ── Mobile (max 767px) ──────────────────────────────────────────────────── */
@@ -233,7 +200,8 @@ nav {
   }
 
   .logo {
-    display: none;
+    margin-bottom: 10px;
+    margin-right: 20px;
   }
 
   .menuNav {
@@ -264,20 +232,21 @@ nav {
   }
 
   .imgBut {
-    max-width: 22px;
+    max-width: 30px;
   }
 
   .butStyle {
     max-width: none;
     height: auto;
-    margin: 0;
   }
 
-   .butStyle2 {
-    margin-inline: 30px;
+ 
+
+  .butStyle3 {
     max-width: none;
     height: auto;
     margin: 0;
+    margin-left: 15px;
   }
 
   .menuNav .text-but {
@@ -288,15 +257,29 @@ nav {
     display: none;
   }
 
+  .aside-group-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .aside-group-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
   .bottons-button {
     display: flex !important;
     flex-direction: row !important;
     align-items: center;
     flex-wrap: nowrap;
-    gap: 8px;                    /* Espaciado más limpio y controlado */
-}
+    gap: 8px;
+  }
 
-.bottons-button .btn-special.enPlay {
+  .bottons-button .btn-special.enPlay {
     width: 38px;
     height: 38px;
     margin: 0;
@@ -308,7 +291,7 @@ nav {
     font-size: 14px;
     letter-spacing: 0;
     flex-shrink: 0;
-}
+  }
 
   .bottons-button .auth-label-full {
     display: none;
@@ -323,7 +306,6 @@ nav {
     margin-top: 26px;
     height: 30px;
     margin-inline: 15px;
-
   }
 
   .exit .exit-label {
