@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import MatchCard from '../../components/matchCard/matchCard';
 import AsideMenu from '../../components/asideMenu/aside';
 import { getMatches, deleteMatch, saveMatch } from '../../services/match.service';
+import Warning from '../../components/warning/warning';
 import AuthContext from '../../context/authContext';
 import { buildMatchDataFromPgnFile } from '../../utils/importPGN';
 
@@ -99,25 +100,15 @@ const Historial = () => {
           )}
 
           {!isLoggedIn && (
-            <div className="text-center mt-5" style={{
-              background: 'rgba(0,0,0,0.45)',
-              border: '1px solid rgba(255,255,255,0.12)',
-              borderRadius: '8px',
-              padding: '2rem 3rem',
-              backdropFilter: 'blur(8px)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
-            }}>
-              <p style={{ fontSize: '1rem', color: 'rgb(255, 255, 255)', margin: 0 }}>
-                Debes iniciar sesión para tener historial de partidas.
-              </p>
-            </div>
+            <Warning 
+              text="Debes iniciar sesión para tener historial de partidas." 
+            />
           )}
 
           {isLoggedIn && matches.length === 0 && (
-            <div className="text-white text-center">
-              <p>No tienes partidas guardadas aún</p>
-              <p>¡Juega tu primera partida!</p>
-            </div>
+            <Warning 
+              text="No tienes partidas guardadas aún. ¡Juega tu primera partida!" 
+            />
           )}
 
           {isLoggedIn && matches.length > 0 && (
