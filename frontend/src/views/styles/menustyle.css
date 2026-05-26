@@ -1,9 +1,9 @@
 .fondo {
   height: 100vh;
   font-family: sans-serif;
-  display: flex;           /* Reemplaza align-items: center; que no funciona solo */
-  align-items: center;     /* Ahora sí funciona con display: flex */
-  justify-content: center; /* Opcional: centra horizontalmente si quieres */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .img-fondo1 {
@@ -50,31 +50,37 @@
   color: white;
   font-size: 22px;
 }
+
 .subtitulo {
   color: white;
 }
+
 form {
-  width: 400px; /* o el ancho que te guste */
+  width: 400px;
 }
+
 input {
   width: 68%;
 }
+
 .marco {
   background-color: #cccccc13;
   border-radius: 20px;
+  padding-top: 6px;
+  padding-bottom: 18px;
 }
 
 .simple {
-  background: none;         
-  border: none;                
-  color: white;             
+  background: none;
+  border: none;
+  color: white;
   margin-top: 15px;
-  text-decoration: underline;              
-  transition: all 0.2s ease;      /* Transición suave */
+  text-decoration: underline;
+  transition: all 0.2s ease;
 }
 
 .simple:hover {
-  background-color: rgba(255, 255, 255, 0.15);  /* Blanco tenue */
+  background-color: rgba(255, 255, 255, 0.15);
   border-radius: 6px;
 }
 
@@ -82,9 +88,6 @@ input {
   background-color: black;
   border-radius: 6px;
 }
-
-
-
 
 .board-header{
   display: flex;
@@ -164,9 +167,14 @@ input {
   color: white;
 }
 
+.reginicio-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
 
 @media (max-width: 1200px) {
-  .row {
+  .img-fondo2 .row {
     overflow-y: auto;
     max-height: 100vh;
     align-content: flex-start;

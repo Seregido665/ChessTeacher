@@ -9,7 +9,7 @@
     transition: all 0.2s ease;
     width: 320px;   
     margin: 6px 30px 10px 40px;
-    padding: 10px 20px; /* opcional: altura y relleno del botón */
+    padding: 10px 20px; 
 }
 
 .verde {

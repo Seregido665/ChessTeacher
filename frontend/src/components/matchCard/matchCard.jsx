@@ -19,9 +19,9 @@ const MatchCard = ({ match, onDelete, onExportPGN }) => {
   return (
     <div className={`match-card ${isDraw ? 'draw' : playerWon ? 'victory' : 'defeat'}`}>
       <div className="match-card-main">
-          <h4>
+          <h5>
             {isDraw ? 'EMPATE' : playerWon ? 'VICTORIA' : 'DERROTA'}
-          </h4>
+          </h5>
 
           <div className="match-actions">
             <button 

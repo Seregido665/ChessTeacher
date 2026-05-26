@@ -58,10 +58,10 @@ const Sesion = () => {
         <div className="fondo img-fondo1">
             <div>
                 <div className="row w-100 m-0">
-                    <div className="col-xl-5 col-md-5 col-12"></div>
-                    <div className="col-xl-7 col-md-7 col-12 d-flex align-items-center">
+                    <div className="col-xl-5 col-12"></div>
+                    <div className="col-xl-7 col-12 d-flex align-items-center">
                         <section className="inicioSesion">
-                            <div className="pb-3"> 
+                            <div className="pb-3">
                                 <img className="imgLogo" src="/img/logoChessW.png" alt="Logo" />
                             </div>
                             <section className="marco">
@@ -96,10 +96,10 @@ const Sesion = () => {
                                     </div>
                                 </form>
                             </section>
-                            
+
                             <div className="pt-2">
-                                <button 
-                                    className="simple" 
+                                <button
+                                    className="simple"
                                     onClick={() => navigate("/game")}>
                                     Probar.
                                 </button>

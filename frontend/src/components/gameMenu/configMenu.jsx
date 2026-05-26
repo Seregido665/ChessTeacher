@@ -69,18 +69,19 @@ export default function ConfigMenu({
   const getResultText = () => {
     if (!gameResult) return "";
     if (gameResult.reason === "checkmate") {
-      return gameResult.winner === "white" ? "¡Blancas GANAN!" : "¡Negras GANAN!";
+      return gameResult.winner === "white" ? "¡Blancas ganan!" : "¡Negras ganan!";
     }
     if (gameResult.reason === "resignation") {
       const winnerColor = gameResult.winner === "white" ? "Blancas" : "Negras";
-      return `¡${winnerColor} GANAN por rendición!`;
+      return `¡${winnerColor} ganan!`;
     }
     if (gameResult.reason === "time") {
       const loserColor = selectedColor === "white" ? "Blancas" : "Negras";
-      return `¡${loserColor} PIERDEN por tiempo!`;
+      return `¡${loserColor} pierden por tiempo!`;
     }
     return "Tablas";
   };
+
 
   return (
     <>
@@ -206,23 +207,20 @@ export default function ConfigMenu({
 
       {/* - RESULTADO Y GUARDADO - */}
       {showResult && (
-        <div className="text-center mt-4">
-          <p className="result pb-1 mb-4 fs-4 fw-bold">
-            {getResultText()}
-          </p>
-          {user && !hasSaved ? (
-            <button
-              onClick={handleSave}
-              className="saveButton guardar mb-4"
-            >
-              Guardar Partida
-            </button>
-          ) : hasSaved ? (
-            <p className="text-success fw-bold mt-2 mb-1">
-              Partida guardada ✓
-            </p>
-          ) : null}
-        </div>
+        <>
+          <div className="result-card">
+            <p className="result-title">{getResultText()}</p>
+          </div>
+          <div className="text-center">
+            {user && !hasSaved ? (
+              <button onClick={handleSave} className="saveButton guardar mt-3">
+                Guardar Partida
+              </button>
+            ) : hasSaved ? (
+              <p className="result-saved">Partida guardada ✓</p>
+            ) : null}
+          </div>
+        </>
       )}
     </>
   );

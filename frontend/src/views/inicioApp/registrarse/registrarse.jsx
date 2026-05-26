@@ -67,17 +67,17 @@ const Registrarse = () => {
         <div className="fondo img-fondo1">
             <div>
                 <div className="row w-100 m-0">
-                    <div className="col-xl-5 col-md-5 col-12"></div>
-                    <div className="col-xl-7 col-md-7 col-12 d-flex align-items-center">
+                    <div className="col-xl-5 col-12"></div>
+                    <div className="col-xl-7 col-12 d-flex align-items-center">
                         <section className="inicioSesion">
-                            <div className="pb-3"> 
+                            <div className="pb-3">
                                 <img className="imgLogo" src="/img/logoChessW.png" alt="Logo" />
                             </div>
                             <section className="marco">
                                 <h4 className="titulo pt-4 pb-3">Registro de Usuario</h4>
                                 {errors.general && (<div className="text-danger pb-2">{errors.general.message}</div>)}
                                 <form onSubmit={handleRegistration} className="formul">
-                                    <input 
+                                    <input
                                         type="text"
                                         name="name"
                                         value={registerData.name}
@@ -85,7 +85,7 @@ const Registrarse = () => {
                                         placeholder="Nombre"
                                     />
                                     {errors.name && (<div className="text-danger">{errors.name.message}</div>)}
-                         
+
                                     <input
                                         className="mt-2"
                                         name="email"
@@ -104,7 +104,7 @@ const Registrarse = () => {
                                         placeholder="Contraseña"
                                     />
                                     {errors.password && (<div className="text-danger">{errors.password.message}</div>)}
-                                    
+
                                     <input
                                         className="mt-2"
                                         type="password"
@@ -125,10 +125,10 @@ const Registrarse = () => {
                                     </div>
                                 </form>
                             </section>
-                           
+
                             <div className="pt-2">
-                                <button 
-                                    className="simple" 
+                                <button
+                                    className="simple"
                                     onClick={() => navigate("/game")}>
                                     Probar.
                                 </button>
