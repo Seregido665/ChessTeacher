@@ -54,7 +54,11 @@ const Registrarse = () => {
             navigate('/inicioSesion');
         })
         .catch(err => {
-            setErrors(err.response?.data?.errors || {});
+            if (err.response?.data?.errors) {
+                setErrors(err.response.data.errors);
+            } else {
+                setErrors({ general: { message: err.response?.data?.message || "Error de conexión con el servidor." } });
+            }
         });
     };
 
@@ -71,6 +75,7 @@ const Registrarse = () => {
                             </div>
                             <section className="marco">
                                 <h4 className="titulo pt-4 pb-3">Registro de Usuario</h4>
+                                {errors.general && (<div className="text-danger pb-2">{errors.general.message}</div>)}
                                 <form onSubmit={handleRegistration} className="formul">
                                     <input 
                                         type="text"
