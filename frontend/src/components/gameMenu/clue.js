@@ -28,7 +28,7 @@ const useClue = (fen) => {
     };
 
     worker.addEventListener('message', onMessage);
-    worker.postMessage(`position fen ${fen}`);
+    worker.postMessage(fen === 'start' ? 'position startpos' : `position fen ${fen}`);
     worker.postMessage('go depth 12');
   };
 
