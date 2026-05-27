@@ -17,16 +17,8 @@ export default function OpeningsMenu({
   const showResult = !!gameResult;
 
   const renderInfoBox = () => {
-    if (openingData === null) return null;
-
-    const total = (openingData.white ?? 0) + (openingData.draws ?? 0) + (openingData.black ?? 0);
-    const noMoves = !openingData.moves || openingData.moves.length === 0;
-
-    if (noMoves || total === 0) {
-      return <p className="opening-no-data">No existen datos de esta apertura.</p>;
-    }
-
-    if (!openingData.opening?.name) return null;
+    if (openingData === null) return <p className="opening-hint">Elige un primer movimiento</p>;
+    if (!openingData.opening?.name) return <p className="opening-hint">FIN DE LA APERTURA</p>;
 
     return (
       <>

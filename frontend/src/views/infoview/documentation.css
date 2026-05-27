@@ -17,13 +17,19 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.rules-main::-webkit-scrollbar {
+  display: none;
 }
 
 .rules-content {
-  width: min(1200px, 100%);
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 18px;
+  padding-inline: 150px;
 }
 
 .rules-hero {
@@ -37,7 +43,7 @@
 
 .rules-kicker {
   margin: 0 0 8px;
-  font-size: 0.84rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 1.4px;
   color: #f9d379;
@@ -64,6 +70,7 @@
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 16px;
+  margin-bottom: 20px;
 }
 
 .rules-stack span {
@@ -154,6 +161,7 @@
   .rules-main {
     padding: 10px;
   }
+
 
   .rules-content {
     gap: 12px;

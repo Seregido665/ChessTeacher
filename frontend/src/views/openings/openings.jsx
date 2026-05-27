@@ -31,6 +31,7 @@ const Openings = () => {
   const [boardEvaluation, setBoardEvaluation] = useState(0);
   const [showEvaluationBar, setShowEvaluationBar] = useState(true);
   const [gameResult, setGameResult] = useState(null);
+  const [postOpeningMoves, setPostOpeningMoves] = useState(0);
   const [selectedColor, setSelectedColor] = useState('white');
   const [resetKey, setResetKey] = useState(0);
   const [currentFen, setCurrentFen] = useState('start');
@@ -107,11 +108,17 @@ const Openings = () => {
       return true;
     }
 
+    if (!openingData?.moves?.length || postOpeningMoves >= 6) return false;
+
     // Compara contra formato chess.js (e1g1) Y formato Lichess (e1h1)
     const moveUci = move.from + move.to + (move.promotion || '');
     const altUci  = CASTLING_TO_ROOK[moveUci] || moveUci;
     const match   = openingData?.moves?.find(m => m.uci === moveUci || m.uci === altUci);
     if (!match) return false;
+
+    if (!openingData.opening?.name) {
+      setPostOpeningMoves(prev => prev + 1);
+    }
 
     setFenHistory(prev => [...prev, game.fen()]);
     setOpeningMoveHistory(prev => [...prev, move.san]);
@@ -123,6 +130,10 @@ const Openings = () => {
   // --- RETROCEDER UN MOVIMIENTO ---
   const handlePrevMove = () => {
     if (fenHistory.length === 0) return;
+
+    if (!openingData?.opening?.name && postOpeningMoves > 0) {
+      setPostOpeningMoves(prev => prev - 1);
+    }
 
     const prevFen = fenHistory[fenHistory.length - 1];
     const newGame = new Chess(prevFen);
@@ -148,6 +159,7 @@ const Openings = () => {
     setOpeningMoveHistory([]);
     setIsFirstMove(true);
     setOpeningData(null);
+    setPostOpeningMoves(0);
   };
 
   // --- EMPEZAR PARTIDA DESDE LA POSICIÓN ACTUAL ---
@@ -197,7 +209,7 @@ const Openings = () => {
   };
 
   const isAtStart = fenHistory.length === 0;
-  const openingArrows = computeArrows(openingData);
+  const openingArrows = postOpeningMoves >= 6 ? [] : computeArrows(openingData);
   // Historial visible durante la partida (apertura + movimientos reales)
   const fullMoveHistory = [...openingMoveHistory, ...moveHistory];
 
