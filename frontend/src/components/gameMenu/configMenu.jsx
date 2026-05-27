@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import "./matchMenu.css";
+import GameResult from '../result/result';
 
 export default function ConfigMenu({
   showResult,
@@ -21,8 +22,6 @@ export default function ConfigMenu({
 }) {
   const [localDifficulty, setLocalDifficulty] = useState(3);
   const [timeIndex, setTimeIndex] = useState(5);
-  const [hasSaved, setHasSaved] = useState(false);
-
   const handleDifficultyChange = (e) => {
     const value = Number(e.target.value);
     setLocalDifficulty(value);
@@ -50,38 +49,13 @@ export default function ConfigMenu({
     onTimeChange?.(options[value]);
   };
 
-  const handleSave = () => {
-    if (hasSaved) return;
-    setHasSaved(true);
-    onSaveGame?.();
-  };
-
   // --- NUEVA PARTIDA ---
   const handleNewGame = () => {
-    setHasSaved(false);
     if (showResult) {
       onResetGame?.();
     }
     onStartGame?.(); 
   };
-
-  // --- RENDICIÓN ---
-  const getResultText = () => {
-    if (!gameResult) return "";
-    if (gameResult.reason === "checkmate") {
-      return gameResult.winner === "white" ? "¡Blancas ganan!" : "¡Negras ganan!";
-    }
-    if (gameResult.reason === "resignation") {
-      const winnerColor = gameResult.winner === "white" ? "Blancas" : "Negras";
-      return `¡${winnerColor} ganan!`;
-    }
-    if (gameResult.reason === "time") {
-      const loserColor = selectedColor === "white" ? "Blancas" : "Negras";
-      return `¡${loserColor} pierden por tiempo!`;
-    }
-    return "Tablas";
-  };
-
 
   return (
     <>
@@ -206,22 +180,12 @@ export default function ConfigMenu({
       </div>
 
       {/* - RESULTADO Y GUARDADO - */}
-      {showResult && (
-        <>
-          <div className="result-card">
-            <p className="result-title">{getResultText()}</p>
-          </div>
-          <div className="text-center">
-            {user && !hasSaved ? (
-              <button onClick={handleSave} className="saveButton guardar mt-3">
-                Guardar Partida
-              </button>
-            ) : hasSaved ? (
-              <p className="result-saved">GUARDADA ✓</p>
-            ) : null}
-          </div>
-        </>
-      )}
+      <GameResult
+        showResult={showResult}
+        gameResult={gameResult}
+        selectedColor={selectedColor}
+        onSaveGame={onSaveGame}
+      />
     </>
   );
 }

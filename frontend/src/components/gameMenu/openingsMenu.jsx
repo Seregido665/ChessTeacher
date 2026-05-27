@@ -1,6 +1,5 @@
-import { useState, useContext } from 'react';
-import AuthContext from '../../context/authContext';
 import "./matchMenu.css";
+import GameResult from '../result/result';
 
 export default function OpeningsMenu({
   openingData,
@@ -15,21 +14,7 @@ export default function OpeningsMenu({
   gameResult,
   onSaveGame,
 }) {
-  const { user } = useContext(AuthContext);
-  const [hasSaved, setHasSaved] = useState(false);
-
   const showResult = !!gameResult;
-
-  const getResultText = () => {
-    if (!gameResult) return '';
-    if (gameResult.winner === 'draw') return '¡Empate!';
-    return gameResult.winner === selectedColor ? '¡Victoria!' : 'Derrota';
-  };
-
-  const handleSave = () => {
-    onSaveGame?.();
-    setHasSaved(true);
-  };
 
   const renderInfoBox = () => {
     if (openingData === null) return null;
@@ -136,22 +121,12 @@ export default function OpeningsMenu({
       </div>
 
       {/* - RESULTADO Y GUARDADO - */}
-      {showResult && (
-        <>
-          <div className="result-card">
-            <p className="result-title">{getResultText()}</p>
-          </div>
-          <div className="text-center">
-            {user && !hasSaved ? (
-              <button onClick={handleSave} className="saveButton guardar mt-3">
-                Guardar Partida
-              </button>
-            ) : hasSaved ? (
-              <p className="result-saved">GUARDADA ✓</p>
-            ) : null}
-          </div>
-        </>
-      )}
+      <GameResult
+        showResult={showResult}
+        gameResult={gameResult}
+        selectedColor={selectedColor}
+        onSaveGame={onSaveGame}
+      />
     </>
   );
 }
