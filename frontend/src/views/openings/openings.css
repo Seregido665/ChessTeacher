@@ -1,0 +1,8 @@
+/* Estilos específicos de la vista Explorador de Aperturas.
+   Los estilos de tablero y layout viven en menustyle.css y matchMenu.css */
+
+.openings-board-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

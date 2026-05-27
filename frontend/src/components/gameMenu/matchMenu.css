@@ -333,6 +333,49 @@
 
 
 
+
+
+
+
+
+
+
+
+
+.opening-info-box {
+  min-height: 68px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.opening-eco {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+
+.opening-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.opening-no-data {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+}
+
 @media (max-width: 1200px) {
   .match-menu-container {
     color: rgb(238, 238, 238);

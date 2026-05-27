@@ -34,24 +34,25 @@ export default function AsideMenu() {
             action={() => navigate("/game")}
           />
           <ButtonLeft
-            img="/menuIcons/HistorialW.png"
+            img="/menuIcons/LessonW.png"
             type="butStyle"
             text="HISTORIAL"
-            tooltip="Historial"
+            tooltip="Historial de Partidas"
             action={() => navigate("/history")}
           />
-          {/* <ButtonLeft
-            img="/menuIcons/PuzzleW.png"
+          <ButtonLeft
+            img="/menuIcons/HistorialW.png"
             type="butStyle"
-            text="EJERCICIOS"
-            action={() => navigate("/exercises")}
-          /> */}
+            text="APERTURAS"
+            tooltip="Explorador de Aperturas"
+            action={() => navigate("/openings")}
+          />
           <ButtonLeft
             img="/menuIcons/RulesW.png"
             type="butStyle3"
             text="INFO.APP"
             tooltip="Info. App"
-            action={() => navigate("/rules")}
+            action={() => navigate("/infoview")}
           />
         </nav>
       </div>

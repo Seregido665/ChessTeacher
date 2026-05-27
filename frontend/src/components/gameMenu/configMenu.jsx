@@ -217,7 +217,7 @@ export default function ConfigMenu({
                 Guardar Partida
               </button>
             ) : hasSaved ? (
-              <p className="result-saved">Partida guardada ✓</p>
+              <p className="result-saved">GUARDADA ✓</p>
             ) : null}
           </div>
         </>

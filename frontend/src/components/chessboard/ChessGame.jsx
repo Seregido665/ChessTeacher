@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { Chess } from 'chess.js';
-import Result from "../resultado/result";
 import './chessboard.css';
 
 const BOARD_HEIGHT_RATIO = 0.8;
@@ -19,6 +18,7 @@ const ChessGame = ({
   gameStarted,
   selectedColor,
   resetKey,
+  initialFen,
   onMoveHistory,
   onEvaluation,
   difficulty,
@@ -28,7 +28,7 @@ const ChessGame = ({
   clueArrow = [],
   className = ''
 }) => {
-  const [game, setGame] = useState(() => new Chess());
+  const [game, setGame] = useState(() => initialFen ? new Chess(initialFen) : new Chess());
   const [boardOrientation, setBoardOrientation] = useState('white');
   const [isThinking, setIsThinking] = useState(false);
   const [boardWidth, setBoardWidth] = useState(400);
@@ -179,7 +179,7 @@ const ChessGame = ({
 
   // --- RESET COMPLETO DEL JUEGO ---
   useEffect(() => {
-    const newGame = new Chess();
+    const newGame = initialFen ? new Chess(initialFen) : new Chess();
     setGame(newGame);
     gameRef.current = newGame;
     setIsThinking(false);

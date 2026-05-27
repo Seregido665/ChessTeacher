@@ -4,8 +4,8 @@ import Sesion from "./views/inicioApp/inicioSesion/inicioSesion"
 import Inicio from "./views/inicioApp/mainInicio/mainInicio"
 import Historial from "./views/history/history"
 import Juego from "./views/game/game"
-import Ejercicios from "./views/exercises/exercises"
-import Documentation from "./views/rules/documentation"
+import Ejercicios from "./views/openings/openings"
+import Documentation from "./views/infoview/documentation"
 import Analisis from "./views/analisis/analisis"
 import { PublicRoute } from './components/ProtectedRoutes';       // LIMITA EL ACCESO A CIERTAS VENTANAS.
 
@@ -42,8 +42,8 @@ function App() {
           
           <Route path="/game" element={<Juego />} />
           <Route path="/history" element={<Historial />} />
-          <Route path="/exercises" element={<Ejercicios />} />
-          <Route path="/rules" element={<Documentation />} />
+          <Route path="/openings" element={<Ejercicios />} />
+          <Route path="/infoview" element={<Documentation />} />
           <Route path="/analysis" element={<Analisis />} />
           <Route path="*" element={<Inicio />} />
         </Routes>

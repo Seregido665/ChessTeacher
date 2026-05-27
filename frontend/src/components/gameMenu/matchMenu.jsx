@@ -3,12 +3,13 @@ import AuthContext from "../../context/authContext";
 import ConfigMenu from './configMenu';
 import GameMatchMenu from './gameMatchMenu';
 import AnalyzeMenu from './analyzeMenu';
+import OpeningsMenu from './openingsMenu';
 import "./matchMenu.css";
 
 export default function MatchMenu({
   gameStarted,
   onStartGame,
-  onTimeChange, 
+  onTimeChange,
   onResetGame,
   selectedColor,
   setSelectedColor,
@@ -22,7 +23,12 @@ export default function MatchMenu({
   onSaveGame,
   onGameEnd,
   onClue,
-  isAnalysisMode = false, 
+  isAnalysisMode = false,
+  isOpeningsMode = false,
+  openingData,
+  isAtStart,
+  difficulty,
+  onDifficultyChange,
   match,
   currentMoveIndex,
   onGoStart,
@@ -33,15 +39,30 @@ export default function MatchMenu({
   moveQualities = [],
   onFlipBoard,
 }) {
+  
   const { user } = useContext(AuthContext);
   const [showBestMove, setShowBestMove] = useState(true);
-
   const showResult = !!gameResult;
   const isGameActive = gameStarted && !showResult;
 
   return (
     <div className="match-menu-container">
-      {isAnalysisMode ? (
+      {isOpeningsMode ? (
+        // Modo APERTURAS
+        <OpeningsMenu
+          openingData={openingData}
+          isAtStart={isAtStart}
+          onPrevMove={onPrevMove}
+          onGoStart={onGoStart}
+          onStartGame={onStartGame}
+          difficulty={difficulty}
+          onDifficultyChange={onDifficultyChange}
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+          gameResult={gameResult}
+          onSaveGame={onSaveGame}
+        />
+      ) : isAnalysisMode ? (
         // Modo ANÁLISIS
         <AnalyzeMenu
           match={match}
